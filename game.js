@@ -86,17 +86,7 @@ function animate(src, Frames) {
     // Define an update function to redraw the canvas and request the next frame
     function update() {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        ctx.drawImage(
-            playerImage,
-            frameX * spriteWidth,
-            frameY * spriteHeight,
-            spriteWidth,
-            spriteHeight,
-            0,
-            0,
-            CANVAS_WIDTH,
-            CANVAS_HEIGHT
-        );
+        ctx.drawImage(playerImage,frameX * spriteWidth,frameY * spriteHeight,spriteWidth,spriteHeight,0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
         if (gameFrame % staggerFrame == 0) {
             if (frameX < Frames) frameX++;
             else frameX = 0;
