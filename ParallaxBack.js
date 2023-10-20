@@ -36,6 +36,18 @@ class Layer{
         this.speed=gameSpeed*this.speedModifier;
     }
     update(){
+        //Right to Left
+        // this.speed=gameSpeed*this.speedModifier;
+        // if(this.x>this.width){
+        //     this.x=-this.width+this.x2+this.speed;
+        // }
+        // if(this.x2>this.width){
+        //     this.x2=-this.width+this.x+this.speed;
+        // }
+        // this.x=Math.floor(this.x+this.speed);
+        // this.x2=Math.floor(this.x2+this.speed);
+
+        //Left to right
         this.speed=gameSpeed*this.speedModifier;
         if(this.x<-this.width){
             this.x=this.width+this.x2-this.speed;
@@ -45,6 +57,7 @@ class Layer{
         }
         this.x=Math.floor(this.x-this.speed);
         this.x2=Math.floor(this.x2-this.speed);
+
     }
     draw(){
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height);
