@@ -40,8 +40,8 @@ class Explosion{
         this.y=y;
         this.enemyWidth=200;
         this.enemyHeight=172;
-        this.width=50;
-        this.height=50;
+        this.width=100;
+        this.height=100;
         this.frame=0;
     }
     update(){
@@ -57,7 +57,7 @@ class Explosion{
  window.addEventListener('click', function (e) {
     if (isCollision(rectangle, e)) {
         BoomAnimation(e);
-        rectangle.x=Math.random()*CANVAS_WIDTH;
+        rectangle.x=Math.random()*-100;
         rectangle.y=Math.random()*CANVAS_HEIGHT;
     }
 });
@@ -133,9 +133,10 @@ class Rect{
         this.width=100;
     }
     update(){
-        this.x++;
+        this.x=this.x+5;
         if(this.x+100>CANVAS_WIDTH){
-            this.x=0;
+            this.x=Math.random()*-100;
+            this.y=Math.random()*CANVAS_HEIGHT;
         }
     }
     draw(){
