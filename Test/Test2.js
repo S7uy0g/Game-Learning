@@ -13,6 +13,7 @@ let gameFrame=0;
 let x=0;
 //let canvasPosition=canvas.getBoundingClientRect();
 const explosions=[];
+let canvasPosition=canvas.getBoundingClientRect();
 
 const backgroundImage=new Image();
 backgroundImage.src='background1.png';
@@ -33,7 +34,7 @@ slider.addEventListener("input", function() {
     gameSpeed=sliderVal;
   });
 
-  class Explosion{
+class Explosion{
     constructor(x,y){
         this.x=x;
         this.y=y;
@@ -53,15 +54,32 @@ slider.addEventListener("input", function() {
     }
 }
  //const explosion=new Explosion();
-window.addEventListener('click',function(e){
-    BoomAnimation(e);
+ window.addEventListener('click', function (e) {
+    if (isCollision(rectangle, e)) {
+        BoomAnimation(e);
+        rectangle.x=Math.random()*CANVAS_WIDTH;
+        rectangle.y=Math.random()*CANVAS_HEIGHT;
+    }
 });
+
+function isCollision(rect, e) {
+    // Calculate the mouse click coordinates relative to the canvas
+    let clickX = e.clientX - canvasPosition.left;
+    let clickY = e.clientY - canvasPosition.top;
+
+    // Check for collision between the rectangle and the click coordinates
+    return (
+        clickX >= rect.x &&
+        clickX <= rect.x + rect.width &&
+        clickY >= rect.y &&
+        clickY <= rect.y + rect.height
+    );
+}
 // window.addEventListener('mousemove',function(e){
 //     BoomAnimation(e);
 // });
 
 function BoomAnimation(e){
-    let canvasPosition=canvas.getBoundingClientRect();
     let positionX=e.x-canvasPosition.left-25;
     let positionY=e.y-canvasPosition.top-25;
     explosions.push(new Explosion(positionX,positionY));
@@ -107,17 +125,37 @@ class Layer{
         ctx.drawImage(this.image,this.x2,this.y,this.width,this.height);
     }
 }
+class Rect{
+    constructor(){
+        this.x=Math.random()*CANVAS_WIDTH;
+        this.y=Math.random()*CANVAS_HEIGHT;
+        this.height=100;
+        this.width=100;
+    }
+    update(){
+        this.x++;
+        if(this.x+100>CANVAS_WIDTH){
+            this.x=0;
+        }
+    }
+    draw(){
+        ctx.fillRect(this.x,this.y,this.width,this.height);
+    }
+}
 const layer1=new Layer(backgroundImage,1);
 const layer3=new Layer(landImage2,2.5);
 const layer2=new Layer(landImage1,2.5);
 const layer4=new Layer(landImage3,2.5);
 const gameObject=[layer1,layer3,layer2,layer4];
+const rectangle=new Rect();
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     gameObject.forEach(Object =>{
         Object.update();
         Object.draw();
     });
+    rectangle.update();
+    rectangle.draw();
     for(let i=0;i<explosions.length;i++){
         explosions[i].update();
         explosions[i].draw();
