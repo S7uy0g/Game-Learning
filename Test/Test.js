@@ -48,6 +48,11 @@ window.addEventListener('click',function(e){
     let positionY=e.y-canvasPosition.top-25;
     explosions.push(new Explosion(positionX,positionY));
 });
+window.addEventListener('mousemove',function(e){
+    let positionX=e.x-canvasPosition.left-25;
+    let positionY=e.y-canvasPosition.top-25;
+    explosions.push(new Explosion(positionX,positionY));
+});
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);

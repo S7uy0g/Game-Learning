@@ -75,9 +75,9 @@ function isCollision(rect, e) {
         clickY <= rect.y + rect.height
     );
 }
-// window.addEventListener('mousemove',function(e){
-//     BoomAnimation(e);
-// });
+window.addEventListener('mousemove',function(e){
+    BoomAnimation(e);
+});
 
 function BoomAnimation(e){
     let positionX=e.x-canvasPosition.left-25;
@@ -133,7 +133,7 @@ class Rect{
         this.width=100;
     }
     update(){
-        this.x=this.x+5;
+        this.x=this.x+2;
         if(this.x+100>CANVAS_WIDTH){
             this.x=Math.random()*-100;
             this.y=Math.random()*CANVAS_HEIGHT;
