@@ -117,13 +117,16 @@ class Background{
         this.landImage3.src='4.png';
         this.landImage4=new Image();
         this.landImage4.src='5.png';
+        this.gunImage=new Image();
+        this.gunImage.src='big_gun.png';
     }
     draw(){
         ctx.drawImage(this.backgroundImage,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height);
         ctx.drawImage(this.landImage1,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height);
         ctx.drawImage(this.landImage2,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height);
         ctx.drawImage(this.landImage3,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height); 
-        ctx.drawImage(this.landImage4,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height);   
+        ctx.drawImage(this.landImage4,this.x,this.y,this.backWidth,this.backHeight,this.x,this.y,this.width,this.height); 
+        ctx.drawImage(this.gunImage,0,0,52,66,canvas.width/2,500,100,200);  
     }
 }
 
