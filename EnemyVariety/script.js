@@ -81,7 +81,7 @@
             this.spriteWidth=48;
             this.spriteHeight=48;
             this.image=enemy1;
-            this.speed=Math.random()*0.1+0.1;
+            this.speed=Math.random()*0.2+0.1;
         }
     }
     class enemyB extends Enemy{
@@ -94,7 +94,7 @@
             this.spriteWidth=48;
             this.spriteHeight=48;
             this.image=enemy2;
-            this.speed=Math.random()*0.2+0.1;
+            this.speed=Math.random()*0.3+0.1;
             this.angle=0;
             this.curve=Math.random()*3;
         }
